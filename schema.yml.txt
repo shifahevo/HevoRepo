@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: customer_summary
+    description: "Summary table for customer metrics"
+    columns:
+      - name: customer_id
+        description: "Unique identifier for the customer"
+        tests:
+          - not_null
+          - unique
+
+      - name: first_name
+        description: "First name of the customer"
+        tests:
+          - not_null
+
+      - name: last_name
+        description: "Last name of the customer"
+        tests:
+          - not_null
+
+      - name: number_of_orders
+        description: "Total number of orders"
+        tests:
+          - not_null
+          - accepted_values:
+              values: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  
+
+      - name: customer_lifetime_value
+        description: "Total amount paid by the customer"
+        tests:
+          - not_null
+          - not_negative  # Ensure lifetime value is not negative
